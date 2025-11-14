@@ -230,7 +230,7 @@ const engine = new Engine(GODOT_CONFIG);
 			openButton.className = 'godot';
 			openButton.style.cssText = 'margin-top: 10px; padding: 10px 20px; cursor: pointer; font-size: 14px;';
 			openButton.onclick = function() {
-				window.open(window.location.href, '_blank');
+				window.open(window.location.href, '_blank', 'width=1280,height=720,resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,status=no');
 			};
 			statusNotice.appendChild(openButton);
 
