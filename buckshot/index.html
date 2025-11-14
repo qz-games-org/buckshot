@@ -224,15 +224,15 @@ const engine = new Engine(GODOT_CONFIG);
 			const missingMsg = 'This game cannot run in an iframe due to browser security restrictions.\n\nClick below to open in a new window:';
 			setStatusNotice(missingMsg);
 
-			// Add a button to open in new window
-			const openButton = document.createElement('button');
-			openButton.textContent = 'Open Game in New Window';
-			openButton.className = 'godot';
-			openButton.style.cssText = 'margin-top: 10px; padding: 10px 20px; cursor: pointer; font-size: 14px;';
-			openButton.onclick = function() {
-				window.open(window.location.href, '_blank', 'width=1280,height=720,resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,status=no');
-			};
-			statusNotice.appendChild(openButton);
+			// Add a link to open in new window
+			const openLink = document.createElement('a');
+			openLink.href = window.location.href;
+			openLink.target = '_blank';
+			openLink.rel = 'noopener';
+			openLink.textContent = 'Open Game in New Window';
+			openLink.className = 'godot';
+			openLink.style.cssText = 'margin-top: 10px; padding: 10px 20px; cursor: pointer; font-size: 14px; display: inline-block; text-decoration: none; background-color: #4a4a4a; border: 1px solid #666; border-radius: 4px;';
+			statusNotice.appendChild(openLink);
 
 			setStatusMode('notice');
 			initializing = false;
