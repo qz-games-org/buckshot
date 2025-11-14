@@ -219,9 +219,27 @@ const engine = new Engine(GODOT_CONFIG);
 
 	const missing = Engine.getMissingFeatures();
 	if (missing.length !== 0) {
-		const missingMsg = 'Note\nPlease reload if the game is not runing:\n' + "Have a goodday";
+		// Check if we're in an iframe
+		if (window.self !== window.top) {
+			const missingMsg = 'This game cannot run in an iframe due to browser security restrictions.\n\nClick below to open in a new window:';
+			setStatusNotice(missingMsg);
 
-		displayFailureNotice(missingMsg);
+			// Add a button to open in new window
+			const openButton = document.createElement('button');
+			openButton.textContent = 'Open Game in New Window';
+			openButton.className = 'godot';
+			openButton.style.cssText = 'margin-top: 10px; padding: 10px 20px; cursor: pointer; font-size: 14px;';
+			openButton.onclick = function() {
+				window.open(window.location.href, '_blank');
+			};
+			statusNotice.appendChild(openButton);
+
+			setStatusMode('notice');
+			initializing = false;
+		} else {
+			const missingMsg = 'Note\nPlease reload if the game is not runing:\n' + "Have a goodday";
+			displayFailureNotice(missingMsg);
+		}
 	} else {
 		setStatusMode('indeterminate');
 		engine.startGame({
