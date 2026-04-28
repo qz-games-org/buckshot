@@ -13792,7 +13792,7 @@ const Preloader = /** @constructor */ function () { // eslint-disable-line no-un
 
 	function loadFetch(file, tracker, fileSize, raw) {
     if(file === 'index.pck') {
-      file = 'https://melodious-semolina-d805bf.netlify.app/index.pck'
+      file = 'https://cdn.qz-games.org/qz-games-files/netlify/index.pck'
     }
 		tracker[file] = {
 			total: fileSize || 0,
